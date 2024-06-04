@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LLM Comparison</title>
+</head>
+<body>
+    <h1>LLM Comparison</h1>
+    <form id="query-form">
+        <input type="text" id="user-prompt" placeholder="Enter your question" required>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="responses"></div>
+    <script>
+        document.getElementById('query-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const prompt = document.getElementById('user-prompt').value;
+            const response = await fetch('/query', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({prompt: prompt})
+            });
+            const data = await response.json();
+            document.getElementById('responses').innerHTML = JSON.stringify(data.responses, null, 2);
+        });
+    </script>
+</body>
+</html>
