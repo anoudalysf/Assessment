@@ -2,26 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>LLM Comparison</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Response Evaluator</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+        .response-container {
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
-    <h1>LLM Comparison</h1>
-    <form id="query-form">
-        <input type="text" id="user-prompt" placeholder="Enter your question" required>
-        <button type="submit">Submit</button>
-    </form>
-    <div id="responses"></div>
+    <div class="container">
+        <h1 class="text-center">LLM Response Evaluator</h1>
+        <form id="promptForm">
+            <div class="form-group">
+                <label for="userPrompt">Enter your prompt:</label>
+                <textarea class="form-control" id="userPrompt" rows="4" placeholder="Type your question here..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div class="response-container" id="responseContainer">
+            <!-- Responses from LLMs will be displayed here -->
+        </div>
+    </div>
+
     <script>
-        document.getElementById('query-form').addEventListener('submit', async function(event) {
+        document.getElementById('promptForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            const prompt = document.getElementById('user-prompt').value;
-            const response = await fetch('/query', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({prompt: prompt})
-            });
-            const data = await response.json();
-            document.getElementById('responses').innerHTML = JSON.stringify(data.responses, null, 2);
+            // Insert JavaScript logic here for handling form submission
+            // and displaying the LLM responses
         });
     </script>
 </body>
